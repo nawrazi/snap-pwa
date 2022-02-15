@@ -16,7 +16,7 @@ body{
 	width: 100%;
 	position: relative;
 	animation-name: slide-up-background;
-	animation-duration: 3s;
+	animation-duration: 1.5s;
 }
 .foreground{
 	background: white;
@@ -62,7 +62,7 @@ a.signin-button:hover{
 	top: 50%;
 	height: 25%;
 	animation-name: fade-in;
-	animation-duration: 3s;
+	animation-duration: 1.5s;
 	/*animation-delay: 3s;*/
 }
 
