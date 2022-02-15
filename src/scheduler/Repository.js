@@ -10,8 +10,7 @@ class Repository {
     }
 
     setRoutines (routines) {
-        console.log(routines)
-        localStorage.setItem("ROUTINES", JSON.stringify(routines));
+        localStorage.setItem("ROUTINES", JSON.stringify(routines ?? []));
     }
 
 

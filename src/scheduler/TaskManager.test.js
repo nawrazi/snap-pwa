@@ -19,8 +19,6 @@ describe("TaskManager", () => {
 
         taskMan.addTask(newTask);
         taskMan.removeTask(newTask);
-
-        console.log(taskMan.taskList)
         expect(taskMan.taskList).toStrictEqual([]);
     });
 
@@ -44,8 +42,6 @@ describe("TaskManager", () => {
         taskMan.addTask(newTask);
         taskMan.saveState();
         taskMan.init();
-
-        console.log(taskMan.tasks);
         taskMan.initDays();
 
         // expect(taskMan.days).toBe(2);

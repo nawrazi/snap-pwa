@@ -78,7 +78,6 @@ class TaskManager {
 			return t.id != task.id;
 		});
 
-		console.log(result);
 		this.taskList = result;
 		this.saveState();
 	}

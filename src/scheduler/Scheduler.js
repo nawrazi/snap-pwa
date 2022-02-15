@@ -17,7 +17,11 @@ class Scheduler {
 	createSchedule() {
 		while (!taskMan.tasks.isEmpty()) {
 			let task = taskMan.tasks.dequeue();
-			this.assignTask(task);
+			const deadline = new Date(task.deadline);
+
+			if(deadline.getTime() > Date.now()){
+				this.assignTask(task);
+			}
 		}
 	}
 
@@ -40,8 +44,6 @@ class Scheduler {
 					this.schedules.push(new Schedule(task, time, day.date));
 
 					return;
-
-					// return new Schedule(task, interval)
 				}
 			}
 		}
@@ -56,6 +58,3 @@ class Scheduler {
 
 export const scheduler = new Scheduler();
 
-// scheduler.createSchedule()
-
-// console.log(scheduler.schedules);

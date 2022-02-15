@@ -30,13 +30,11 @@ describe("Routine Manager", () => {
 		const routineManager = new RoutineManager();
 		const routine = new Routine(0, 150, "test routine", ["TUE"]);
 		let now = new Date();
-		const day = new TimeInterval(now);
+		const day = new TimeInterval(now, 0);
 
 		routineManager.addRoutine(routine);
 
 		routineManager.allocateRoutine(day);
-
-		console.log(day.intervals)
 
 		expect(day.intervals[0].start).toBe(150);
 	});

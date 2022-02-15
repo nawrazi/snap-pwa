@@ -69,7 +69,7 @@ export class TimeInterval {
 				this.intervals.splice(index, 1, ...unBookedIntervals);
 
 				break;
-			}else if(interval.start > newInterval.start && interval.end > newInterval.end){
+			}else if(interval.start > newInterval.start &&  newInterval.end > interval.start && newInterval.end < interval.end){
 
 				const unBookedIntervals = [];
 
@@ -83,7 +83,7 @@ export class TimeInterval {
 				const unBookedIntervals = [];
 
 				unBookedIntervals.push(
-					new Interval(interval.start, interval.end)
+					new Interval(interval.start, newInterval.start)
 				);
 
 				this.intervals.splice(index, 1, ...unBookedIntervals);

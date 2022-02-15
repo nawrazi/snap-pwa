@@ -52,10 +52,12 @@ export function SelectInputs({
 
 	function handleSelect(newValue) {
 		if (multiple) {
-			value.push(newValue);
-
-			let uniques = new Set(value);
-			setter(Array.from(uniques));
+			if(value.includes(newValue)){
+				setter(value.filter(val => val != newValue))
+			}else{
+				value.push(newValue);
+				setter(value);
+			}
 
 			return;
 		}
