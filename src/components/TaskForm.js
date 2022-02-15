@@ -24,6 +24,7 @@ function validateTaskForm(form) {
 
 		taskDeadline: {
 			presence: notNull,
+			dateTime: true
 		},
 
 		taskLocation: {
