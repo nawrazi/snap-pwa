@@ -4,6 +4,8 @@ import { signOutWithGoogle } from "../components/Firebase";
 import RoutineList from "../components/Routine";
 import Nav from "../components/Nav";
 import '../styles/profile.css';
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 const custom_css = ` .container { padding: 28px; } `
 
@@ -13,6 +15,10 @@ export default function Profile() {
     var info = JSON.parse(localStorage.getItem("userInfo"));
     var name = info?.name || "";
     var pic = info?.profilePic || require("../images/default_profile.jpg");
+
+    var completed = JSON.parse(localStorage.getItem("COMPLETEDTASKS"))
+    
+    const percentage = completed.length * 10;
 
     return (
         <>
@@ -45,6 +51,18 @@ export default function Profile() {
 
                 <div className="name-container">
                     {name}
+                </div>
+
+                <div className="profile-title">
+                    {"My Progress"}
+                </div>
+
+                <div style={{ width: 80, height: 80}} className="progress-container">
+                    <CircularProgressbar value={percentage} text={`${percentage}%`} />
+                </div>
+
+                <div className="profile-title">
+                    {"My Routines"}
                 </div>
 
                 <div className="container">

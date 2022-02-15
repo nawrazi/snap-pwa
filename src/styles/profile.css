@@ -17,6 +17,18 @@
     font-weight: 300
 }
 
+.progress-container {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 39vw;
+    margin-top: 20px;
+}
+
+.profile-title {
+    margin: 30px 0 0 10px;
+    font-weight: bolder;
+}
+
 .logout-button-container {
     display: flex;
     justify-content: end;
