@@ -12,7 +12,7 @@ function App() {
   const auth = getAuth()
   onAuthStateChanged(auth, (user) => { setIsUserSignedIn(user) })
 
-  if (isUserSignedIn) {
+  if (!isUserSignedIn) {
     return (
       <BrowserRouter>
         <Routes>

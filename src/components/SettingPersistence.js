@@ -23,7 +23,7 @@ export function Preferences () {
             <div className='setting-line-flex'>
                 <div className='setting-labels'>
                     <div className='setting-icon sound-icon'></div>
-                    <label className='setting-name sound-name'>Sounds</label>
+                    <label className='setting-name sound-name'>Progress</label>
                 </div>
                 <div className='setting-toggle sound-toggle'>
                     <SoundToggle />

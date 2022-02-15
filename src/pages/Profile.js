@@ -18,6 +18,9 @@ export default function Profile() {
     
     const percentage = completed.length * 10;
 
+    var settings = JSON.parse(localStorage.getItem("settings"))
+    var trackingEnabled = settings.sounds
+
     return (
         <>
             <header>
@@ -51,13 +54,17 @@ export default function Profile() {
                     {name}
                 </div>
 
-                <div className="profile-title">
-                    {"My Progress"}
-                </div>
-
-                <div style={{ width: 80, height: 80}} className="progress-container">
-                    <CircularProgressbar value={percentage} text={`${percentage}%`} />
-                </div>
+                { trackingEnabled &&
+                    <div>
+                        <div className="profile-title">
+                            {"My Progress"}
+                        </div>
+                        
+                        <div style={{ width: 80, height: 80}} className="progress-container">
+                            <CircularProgressbar value={percentage} text={`${percentage}%`} />
+                        </div>
+                    </div>
+                }
 
                 <div className="profile-title">
                     {"My Routines"}
