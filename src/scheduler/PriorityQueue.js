@@ -3,7 +3,6 @@ import { repository } from "./Repository";
 export class TaskQueue{
 
     constructor(tasks){
-        
         this.tasks = tasks
     }
 

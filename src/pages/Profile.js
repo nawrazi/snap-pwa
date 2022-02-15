@@ -5,14 +5,12 @@ import RoutineList from "../components/Routine";
 import Nav from "../components/Nav";
 import '../styles/profile.css';
 
-const custom_css = ` .container { padding: 28px; } `
-
 export default function Profile() {
     const [isOpened, setIsOpened] = useState(false);
 
     var info = JSON.parse(localStorage.getItem("userInfo"));
-    var name = info.name;
-    var pic = info.profilePic || require("../images/default_profile.jpg");
+    var name = info?.name;
+    var pic = info?.profilePic || require("../images/default_profile.jpg");
 
     return (
         <>
