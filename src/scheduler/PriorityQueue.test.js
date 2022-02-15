@@ -1,73 +1,70 @@
-const {TaskQueue} = require("./PriorityQueue")
-const { Task } = require("./TaskManager")
+const { TaskQueue } = require("./PriorityQueue");
+const { Task } = require("./TaskManager");
 
-describe("TaskQueue Consturctor Test", () =>
+describe("TaskQueue Consturctor Test", () => {
+	test("Task Queue with null tasks", () => {
+		// with no task
+		let taskQue = new TaskQueue();
 
-    test("Task Queue with null tasks", () => {
-        // with no task
-        let taskQue = new TaskQueue()
+		expect(taskQue.tasks).toBe(undefined);
+	});
 
-        expect(taskQue.tasks).toBe(undefined);
-    }),
+	test("Task Queue with empty task", () => {
+		let taskQue = new TaskQueue([]);
 
-    test("Task Queue with empty task", () => {
-        let taskQue = new TaskQueue([])
-
-        expect(taskQue.tasks.length).toBe(0);
-    })
-);
-
+		expect(taskQue.tasks.length).toBe(0);
+	});
+});
 
 describe("TaskQue enque test", () => {
-    test("enque with empty object", () => {
-        let taskQue = new TaskQueue([])
-        let newTask = {};
+	test("enque with empty object", () => {
+		let taskQue = new TaskQueue([]);
+		let newTask = {};
 
-        taskQue.enqueue(newTask);
-        expect(taskQue.tasks[0]).toBe(newTask);
-    }),
+		taskQue.enqueue(newTask);
+		expect(taskQue.tasks[0]).toBe(newTask);
+	});
+	test("enque with already existing Item", () => {
+		let taskQue = new TaskQueue([]);
+		let newTask = {};
 
-    test("enque with already existing Item", () => {
-        let taskQue = new TaskQueue([])
-        let newTask = {};
+		taskQue.enqueue(new Task("Task Name", "", 10, new Date(), 5));
 
-        taskQue.enqueue(new Task(
-            "Task Name",
-            "",
-            10,
-            new Date(),
-            5
-        ));
-
-        taskQue.enqueue(newTask)
-        expect(taskQue.tasks[0]).toBe(newTask);
-    })
-})
+		taskQue.enqueue(newTask);
+		expect(taskQue.tasks[0]).toBe(newTask);
+	});
+});
 
 describe("TaskQueue dequeque test", () => {
-    test("dequeue with empty otasks", () => {
-        let taskQue = new TaskQueue([])
+	test("dequeue with empty otasks", () => {
+		let taskQue = new TaskQueue([]);
 
-        expect(taskQue.dequeue()).toBe(undefined);
-    }),
+		expect(taskQue.dequeue()).toBe(undefined);
+	});
+	test("dequeque with already existing Item", () => {
+		let taskQue = new TaskQueue([]);
+		let newTask = new Task("Task Name", "", 10, new Date(), 5);
 
-    test("dequeque with already existing Item", () => {
-        let taskQue = new TaskQueue([])
-        let newTask = new Task(
-            "Task Name",
-            "",
-            10,
-            new Date(),
-            5
-        )
+		taskQue.enqueue(newTask);
 
-        taskQue.enqueue(newTask);
+		expect(taskQue.dequeue()).toBe(newTask);
+	});
+});
 
-        
-        expect(taskQue.dequeue()).toBe(newTask);
-    })
-})
+describe("TaskQueue fathest date", () => {
+	test("with empty taks", () => {
+		let taskQue = new TaskQueue([]);
 
-describe("TaskQueue ", () => {
-    
-})
+		expect(taskQue.farthestDeadline()).toBe(null);
+	});
+	test("with taks", () => {
+		let now = new Date();
+
+		let taskQue = new TaskQueue([]);
+		let newTask = new Task("Task Name", "", 10, now, 5);
+
+		taskQue.enqueue(newTask);
+
+		expect(taskQue.farthestDeadline()).toBe(now);
+	});
+});

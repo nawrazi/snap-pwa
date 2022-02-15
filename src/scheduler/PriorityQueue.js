@@ -29,9 +29,9 @@ export class TaskQueue{
 
     farthestDeadline(){
 
-        // console.log(typeof this.tasks)
-
-        console.log(this.tasks.length)
+        if(this.tasks.length == 0){
+            return null;
+        }
 
         let farthestDate = this.tasks[0].deadline;
 

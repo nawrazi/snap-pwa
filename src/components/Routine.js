@@ -9,8 +9,6 @@ import classNames from "classnames";
 function RoutineList() {
 	const [routines, setRoutines] = useState(routineManager._routines);
 
-	useState(() => routineManager.saveState());
-
 	return (
 		<>
 			<div>
@@ -31,6 +29,7 @@ function Routine({ routine, setRoutines }) {
 		console.log("called");
 		routineManager.removeRoutine(routine);
 		setRoutines(routineManager._routines);
+		routineManager.saveState()
 	}
 
 	return (
@@ -44,7 +43,11 @@ function Routine({ routine, setRoutines }) {
 							"week-day": r == "SUN" || r == "SAT",
 						});
 
-						return <span className={className} key={i}>{r}</span>;
+						return (
+							<span className={className} key={i}>
+								{r}
+							</span>
+						);
 					})}
 				</div>
 			</section>

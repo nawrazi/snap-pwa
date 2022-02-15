@@ -1,7 +1,7 @@
 import { repository } from "./Repository";
 import { Repeat, Interval } from "./Routine";
 
-class RoutineManager {
+export class RoutineManager {
 	constructor() {
 		this.init();
 	}
@@ -18,12 +18,8 @@ class RoutineManager {
 		for (let routine of this._routines) {
 			if (inOnRepeat(day.date.getDay(), routine)) {
 				// remove a specified time interval from the 
-				console.log("START _XXXXXXXX");
-				console.log(day);
 				const booked = new Interval(routine.start, routine.end);
 				day.removeInterval(booked);
-				console.log(day);
-				console.log("END _XXXXXXXX");
 			}
 		}
 	};
@@ -43,8 +39,3 @@ class RoutineManager {
 
 export const routineManager = new RoutineManager();
 
-// // test
-// routineManager.addRoutine(
-// 	new Routine(0, 1300, 1350, "Kill the dog", Repeat.FRI)
-// );
-// routineManager.addRoutine(new Routine(0, 0, 60, "Kill the dog", Repeat.AllDAY));

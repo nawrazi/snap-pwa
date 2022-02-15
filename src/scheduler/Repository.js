@@ -19,7 +19,6 @@ class Repository {
         const key = !completed ? "TASKS" : "COMPLETEDTASKS"
         
         if (!localStorage.getItem(key)){
-            console.log("key not found")
             return [];
             
         }

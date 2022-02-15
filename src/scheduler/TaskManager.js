@@ -1,16 +1,15 @@
-
 import { TaskQueue } from "./PriorityQueue";
 import { repository } from "./Repository";
 import { TimeInterval } from "./Routine";
 import { routineManager } from "./RoutineManager";
-import { v4 as uuidv4} from "uuid"; 
+import { v4 as uuidv4 } from "uuid";
 
 const DAYINMILL = 1000 * 3600 * 24;
 
 export class Task {
 	constructor(name, desc, duration, deadline, priority, location, color) {
 		this.id = uuidv4();
-		
+
 		this.name = name;
 		this.desc = desc;
 		this.duration = duration;
@@ -22,8 +21,7 @@ export class Task {
 }
 
 class TaskManager {
-
-	constructor(){
+	constructor() {
 		this.init();
 	}
 
@@ -36,14 +34,14 @@ class TaskManager {
 	}
 
 	initDays() {
-		if(!this.tasks.isEmpty()){
-			let now =  new Date();//
+		if (!this.tasks.isEmpty()) {
+			let now = new Date(); //
 
 			let lastDay = this.tasks.farthestDeadline();
 
 			// console.log(lastDay);
-			if(typeof lastDay == 'string'){
-				lastDay = new Date(lastDay)
+			if (typeof lastDay == "string") {
+				lastDay = new Date(lastDay);
 			}
 			let daysInBetWeen = lastDay.getTime() - now.getTime();
 
@@ -69,31 +67,34 @@ class TaskManager {
 		}
 	}
 
-    allotRoutines() {
-        this.days.forEach(day => {
-            routineManager.allocateRoutine(day)
-        })
-    }
+	allotRoutines() {
+		this.days.forEach((day) => {
+			routineManager.allocateRoutine(day);
+		});
+	}
 
-    removeTask(task){
-        this.taskList = this.taskList.filter(t => t.id !== task.id );
+	removeTask(task) {
+		const result = this.taskList.filter((t) => {
+			return t.id != task.id;
+		});
+
+		console.log(result);
+		this.taskList = result;
 		this.saveState();
-    }
+	}
 
-	addTask(task){
+	addTask(task) {
 		this.taskList.push(task);
 	}
 
-	addCompletedTask(task){
+	addCompletedTask(task) {
 		this.completedTask.push(task);
 	}
 
-	saveState(){
+	saveState() {
 		repository.setTasks(this.taskList);
-		repository.setTasks(this.completedTask, true)
+		repository.setTasks(this.completedTask, true);
 	}
-
 }
 
 export const taskMan = new TaskManager();
-
