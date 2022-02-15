@@ -11,7 +11,6 @@ import { scheduler } from "../scheduler/Scheduler";
 import { useState } from "react";
 import { reload } from "./utils";
 import ClickAwayListener from "react-click-away-listener";
-import { routineManager } from "../scheduler/RoutineManager";
 import { taskMan } from "../scheduler/TaskManager";
 
 

@@ -17,7 +17,7 @@ function validateTaskForm(form) {
 		taskDesc: {
 			presence: notNull,
 			length: {
-				minimum: 8,
+				minimum: 0,
 				maximum: 200,
 			},
 		},
