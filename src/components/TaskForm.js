@@ -55,7 +55,7 @@ export function TaskForm({ object, title }) {
 	const handle = (e) => setTaskColor(e.target.value);
 	let navigator = useNavigate();
 
-	const priority = ["Cassual", "Nomal", "Crucial", "High Priority"];
+	const priority = ["Casual", "Normal", "Crucial", "High Priority"];
 
 	function submitform() {
 		const task = new Task(
